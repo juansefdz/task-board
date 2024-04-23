@@ -37,7 +37,7 @@ public class TaskController {
         return "viewTasks";
     }
 
-    @GetMapping("/form") // vista pagina inicial
+    @GetMapping("/form")
     public String showViewFormTask(Model objModel) {
         objModel.addAttribute("task", new Task());
         objModel.addAttribute("action", "/create");
@@ -76,10 +76,10 @@ public class TaskController {
         model.addAttribute("taskList", taskList);
         return "viewTasks";
     }
+
     @PostMapping("/updateTask/{id}")
     public String updateTaskState(@PathVariable Long id, @RequestParam("state") String state) {
         this.objTasksService.updateTaskState(id, state);
         return "redirect:/";
     }
-
 }

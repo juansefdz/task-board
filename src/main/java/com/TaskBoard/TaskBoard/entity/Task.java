@@ -19,10 +19,10 @@ public class Task {
     @Column(length = 255, nullable = false)
     private String description;
 
-    @Column(nullable = false)
+    @Column
     private LocalDate date;
 
-    @Column(nullable = false)
+    @Column
     private LocalTime time;
 
     @Column(length = 50, nullable = false)
