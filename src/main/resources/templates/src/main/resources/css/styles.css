@@ -1,0 +1,18 @@
+
+.main-container{
+    width: 100vw !important;
+    height: 100vh !important;
+   
+}
+
+
+.panel-container{
+    background: rgb(149, 151, 148);
+
+}
+
+
+.card-title i{
+    font-size: 60px;
+
+}

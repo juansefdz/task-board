@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+          crossorigin="anonymous"
+  />
+  <link
+          href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+          rel="stylesheet"
+  />
+  <link rel="stylesheet" href="./src/main/resources/css/styles.css" />
+
+  <title>TASK BOARD</title>
+</head>
+<body>
+<header
+        class="header-container d-flex align-items-center m-4 flex-row justify-content-around"
+>
+  <div
+          class="d-flex flex-row justify-content-center align-items-center card-title"
+  >
+    <i class="bx bx-task"></i>
+    <h1>TASK BOARD</h1>
+  </div>
+</header>
+
+<div class="main-container d-flex flex-row justify-content-center align-items-center">
+
+  <div class="panel-container w-100 m-2 gap-2 align-items-center flex-column justify-content-center"
+  >
+    <button type="button" class="btn btn-success align-items-center" th:href="@{/}">Add new Task </button>
+    <button type="button" class="btn btn-info align-items-center" th:href="@{/}">Back </button>
+
+    <div class="search-container w-100 align-items-center flex-column justify-content-center gap-5">
+      <div>
+
+
+      </div>
+      <h1 class="d-flex align-items-center justify-content-center m-2">MY TASKS</h1>
+      <div class="d-flex gap-2 w-100 align-items-center flex-row   justify-content-center">
+
+        <form class="d-flex" role="search" th:action="@{/}" method="get">
+          <input class="form-control me-2" type="search" name="name" placeholder="Search Task" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+
+        <div class="buttons-container d-flex gap-2 align-items-center justify-content-center flex-row">
+          <form action="/" method="get">
+            <input type="hidden" name="state" value="pending">
+            <button type="submit" class="btn btn-warning">Pending</button>
+          </form>
+          <form action="/" method="get">
+            <input type="hidden" name="state" value="completed">
+            <button type="submit" class="btn btn-secondary">Completed</button>
+          </form>
+          <form action="/" method="get">
+            <input type="hidden" name="state" value="canceled">
+            <button type="submit" class="btn btn-danger">Canceled</button>
+          </form>
+          <form action="/" method="get">
+            <button type="submit" class="btn btn-success">Show All</button>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="tasks-container d-flex gap-2 align-items-center flex-column m-2"
+    >
+
+
+      <div th:each="task : ${taskList}" class="card w-75 " >
+        <div class="card-body">
+          <h2 class="card-title" th:text=" 'Title: ' + ${task.title}"></h2>
+          <h3 class="card-title" th:text=" 'State: ' + ${task.state}"></h3>
+          <form th:action="@{'/updateTask/' + ${task.id}}" method="post">
+            <div class="selector-container d-flex flex-row gap-2">
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Change State
+                </button>
+                <ul class="dropdown-menu">
+                  <li><button class="dropdown-item" type="submit" name="state" value="pending">Pending</button></li>
+                  <li><button class="dropdown-item" type="submit" name="state" value="completed">Completed</button></li>
+                  <li><button class="dropdown-item" type="submit" name="state" value="canceled">Canceled</button></li>
+                </ul>
+              </div>
+              <a th:href="@{delete/{id}(id=${task.id})}" class="btn btn-danger">Delete</a>
+
+            </div>
+
+          </form>
+          <p class="card-text" th:text=" 'Description: ' + ${task.description}"></p>
+
+          <p th:text="'Time: ' + ${task.time}"></p>
+
+          <p th:text="'Date: ' + ${task.date}"></p>
+
+        </div>
+      </div>
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="#">Previous</a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"
+></script>
+<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+</body>
+</html>
