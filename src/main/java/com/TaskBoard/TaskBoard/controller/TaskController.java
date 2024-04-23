@@ -76,10 +76,10 @@ public class TaskController {
         model.addAttribute("taskList", taskList);
         return "viewTasks";
     }
-
-    @PostMapping("/updateState/{id}")
+    @PostMapping("/updateTask/{id}")
     public String updateTaskState(@PathVariable Long id, @RequestParam("state") String state) {
         this.objTasksService.updateTaskState(id, state);
         return "redirect:/";
     }
+
 }
