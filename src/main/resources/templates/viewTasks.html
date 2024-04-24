@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="./src/main/resources/css/styles.css"/>
     <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -13,7 +14,7 @@
             href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
             rel="stylesheet"
     />
-    <link rel="stylesheet" href="./src/main/resources/css/styles.css"/>
+
 
     <title>TASK BOARD</title>
 </head>
@@ -30,10 +31,8 @@
 </header>
 
 <div class="main-container d-flex flex-row justify-content-center align-items-center">
-    <div class="panel-container w-100 m-2 gap-2 align-items-center flex-column justify-content-center">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Add new task
-        </button>
+    <div class="panel-container w-100 gap-2 align-items-center flex-column justify-content-center">
+
 
         <div class="search-container w-100 align-items-center flex-column justify-content-center gap-5">
             <div>
@@ -42,30 +41,31 @@
                      aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Register new task </h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                            </div>
+
                             <div class="modal-body">
                                 <form action="/create" method="post">
                                     <div class="mb-3">
                                         <label for="TitleTask" class="form-label">Task Title</label>
-                                        <input type="text" class="form-control" id="TitleTask" name="title" aria-describedby="Task Title">
+                                        <input type="text" class="form-control" id="TitleTask" name="title"
+                                               aria-describedby="Task Title">
                                     </div>
                                     <div class="mb-3">
                                         <label for="TitleDescription" class="form-label">Task Description</label>
-                                        <input type="text" class="form-control" id="TitleDescription" name="description" aria-describedby="Task Description">
+                                        <input type="text" class="form-control" id="TitleDescription" name="description"
+                                               aria-describedby="Task Description">
                                     </div>
                                     <div class="mb-3">
                                         <label for="TaskDate" class="form-label">DATE</label>
-                                        <input type="date" class="form-control" id="TaskDate" name="date" aria-describedby="Task Date" >
+                                        <input type="Date" class="form-control" id="TaskDate" name="date"
+                                               aria-describedby="Task Date">
                                     </div>
                                     <div class="mb-3">
                                         <label for="TaskTime" class="form-label">TIME</label>
-                                        <input type="time" class="form-control" id="TaskTime" name="time" aria-describedby="Task Time" >
+                                        <input type="Time" class="form-control" id="TaskTime" name="time"
+                                               aria-describedby="Task Time">
                                     </div>
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                    </button>
                                     <button type="submit" class="btn btn-primary">Add Task</button>
                                     <input type="hidden" id="TaskState" name="state" value="pending">
 
@@ -79,7 +79,7 @@
 
             </div>
             <h1 class="d-flex align-items-center justify-content-center m-2">MY TASKS</h1>
-            <div class="d-flex gap-2 w-100 align-items-center flex-row   justify-content-center">
+            <div class="d-flex gap-2 w-100 align-items-center flex-column   justify-content-center">
 
                 <form class="d-flex" role="search" th:action="@{/}" method="get">
                     <input class="form-control me-2" type="search" name="name" placeholder="Search Task"
@@ -87,25 +87,36 @@
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
 
-                <div class="buttons-container d-flex gap-2 align-items-center justify-content-center flex-row">
-                    <form action="/" method="get">
-                        <input type="hidden" name="state" value="pending">
-                        <button type="submit" class="btn btn-warning">Pending</button>
-                    </form>
-                    <form action="/" method="get">
-                        <input type="hidden" name="state" value="completed">
-                        <button type="submit" class="btn btn-secondary">Completed</button>
-                    </form>
-                    <form action="/" method="get">
-                        <input type="hidden" name="state" value="canceled">
-                        <button type="submit" class="btn btn-danger">Canceled</button>
-                    </form>
-                    <form action="/" method="get">
-                        <button type="submit" class="btn btn-success">Show All</button>
-                    </form>
+                <div class="filter-container d-flex gap-2 align-items-center justify-content-space-around flex-column">
+                    <h5>Filter Task's By </h5>
+                    <div class="buttons-container d-flex gap-2 align-items-center justify-content-space-around flex-row">
+                        <form action="/" method="get">
+                            <input type="hidden" name="state" value="pending">
+                            <button type="submit" class="btn btn-warning">Pending</button>
+                        </form>
+                        <form action="/" method="get">
+                            <input type="hidden" name="state" value="completed">
+                            <button type="submit" class="btn btn-secondary">Completed</button>
+                        </form>
+                        <form action="/" method="get">
+                            <input type="hidden" name="state" value="canceled">
+                            <button type="submit" class="btn btn-danger">Canceled</button>
+                        </form>
+                        <form action="/" method="get">
+                            <button type="submit" class="btn btn-success">Show All</button>
+                        </form>
+                    </div>
                 </div>
 
+                <div class="new-task-container">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Add new task
+                    </button>
+                </div>
+
+
             </div>
+
 
         </div>
 
@@ -155,15 +166,33 @@
 
                 </div>
             </div>
+
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#">Previous</a>
+                    <li
+                            class="page-item"
+                            th:classappend="${currentPage == 1} ? 'disabled' : ''"
+                    >
+                        <a class="page-link" th:href="@{|/?page=${currentPage-1}|}"
+                        >Previous</a
+                        >
                     </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    <li
+                            class="page-item"
+                            th:each="i : ${#numbers.sequence(1, totalPages)}"
+                            th:classappend="${i == currentPage} ? 'active' : ''"
+                    >
+                        <a class="page-link" th:href="@{|/?page=${i}|}" th:text="${i}"></a>
+                    </li>
+
+                    <li
+                            class="page-item"
+                            th:classappend="${currentPage == totalPages} ? 'disabled' : ''"
+                    >
+                        <a class="page-link" th:href="@{|/?page=${currentPage + 1}|}"
+                        >Next</a
+                        >
+                    </li>
                 </ul>
             </nav>
         </div>
